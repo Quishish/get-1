@@ -13,6 +13,5 @@ def tri_gen(freq, time):
     return ((-2.0 / np.pi) * math.asin(math.sin(2*np.pi*freq*time))+1)/2
 
 def abscos(freq, time):
-    return abs(((math.cos(2*np.pi*freq*time))+1)/2)
-
+    return abs(math.cos(2*np.pi*freq*time))
     
