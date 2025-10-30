@@ -32,7 +32,7 @@ class R2R_ADC:
         while (GPIO.input(self.comp_gpio) == 0 and n <= 255):
             time.sleep(self.compare_time)
             n+=1
-            print(GPIO.input(self.comp_gpio) )
+            ##print(GPIO.input(self.comp_gpio) )
             self.number_to_dac(n)
         return n
     
@@ -41,11 +41,25 @@ class R2R_ADC:
         number = self.sequentiial_counting_adc()
         return (number/255 * self.dynamic_range)
     
+    def  get_sar_voltage(self):
+        l = 0
+        r = 255
+        while (r-l > 1):
+            m = (r+l)//2
+            self.number_to_dac(m)
+            time.sleep(0.001)
+            if GPIO.input(self.comp_gpio) == 0:
+                l = m
+            else:
+                r = m
+        return (r/255 * self.dynamic_range)
+    
 if __name__ == "__main__":
     dynamic_range = 3.117
-    adc = R2R_ADC(3.117, 0.1)
+    adc = R2R_ADC(3.117, 0.01)
     try:
         while True:
-            print(adc.get_sc_voltage())
+            #print(adc.get_sc_voltage())
+            print(adc.get_sar_voltage())
     finally:
         adc.deinit()
