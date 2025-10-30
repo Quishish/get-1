@@ -23,17 +23,16 @@ class R2R_ADC:
         ##print('1')
         out = [int(element) for element in bin(number)[2:].zfill(8)]
         for i in range(len(self.bits_gpio)):
-            ##print('4')
-            ##print(out)
             GPIO.output(self.bits_gpio[i], out[i])
 
     def sequentiial_counting_adc(self):
         ##print('2')
-        n = -1
+        n = 0
+        self.number_to_dac(0)
         while (GPIO.input(self.comp_gpio) == 0 and n <= 255):
             time.sleep(self.compare_time)
             n+=1
-            print(GPIO.input(self.comp_gpio) )
+            ##print(GPIO.input(self.comp_gpio) )
             self.number_to_dac(n)
         return n
     
