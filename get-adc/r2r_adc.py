@@ -32,7 +32,7 @@ class R2R_ADC:
         while (GPIO.input(self.comp_gpio) == 0 and n <= 255):
             time.sleep(self.compare_time)
             n+=1
-            ##print(GPIO.input(self.comp_gpio) )
+            print(GPIO.input(self.comp_gpio) )
             self.number_to_dac(n)
         return n
     
