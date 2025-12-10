@@ -2,11 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def Pressure(N):
-    return N
+def Pressure(x):
+    P = 0.417329 * x - 15.098481
+    return P
 
 
-input_file = 'calib_data_160.txt'  # Имя входного файла
+input_file = 'data_2.txt'  # Имя входного файла
 
 
 # Считываем данные из файла
@@ -32,10 +33,10 @@ print(f"Среднее значение первого столбца: {average_
 # Строим график
 plt.figure(figsize=(10, 6))
 plt.plot(time, values, linestyle='-', color='b')
-plt.plot(7.576132535934448, Pressure(343), 'o', color = 'black')
-plt.plot(54.503657579422, Pressure(192), 'o', color = 'black')
-plt.title('График зависимости значений от времени')
+plt.plot(10.23682427406311, Pressure(393), 'o', color = 'black') 
+plt.plot(51.66168189048767, Pressure(234), 'o', color = 'black')
+plt.title('Артериальное давление после нагрузки')
 plt.xlabel('Время (секунды)')
-plt.ylabel('Значения')
+plt.ylabel('мм рт ст')
 plt.grid(True)
 plt.show()
